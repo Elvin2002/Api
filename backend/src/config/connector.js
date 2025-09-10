@@ -1,9 +1,9 @@
 import mysql from "mysql2/promise"
 
-async function CreatePool(Users = "" ,Password = "" ,Database = "", Host = "", Port=3306 ){
+async function CreatePool(Users ,Password ,Database , Host , Port ){
     try{
 
-        const connection = await mysql.createPool({host:Host, user:Users, 
+        const pool = await mysql.createPool({host:Host, user:Users, 
             password:Password,
             database:Database,
             port:Port,
@@ -11,7 +11,7 @@ async function CreatePool(Users = "" ,Password = "" ,Database = "", Host = "", P
             connectionLimit:15,
             waitForConnections:true                                            
         });
-        return connection
+        return pool
     }catch(error){
         return error;
     }
